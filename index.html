@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Solutions - Premium Smartphones & Accessories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #f97316;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-details {
+            background: var(--accent);
+        }
+        
+        .btn-details:hover {
+            background: #e5620d;
+        }
+
+        /* Updated Header with Hamburger Menu */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            margin-left: 20px;
+            color: var(--dark);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary);
+        }
+
+        .cart-count {
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+            position: relative;
+            top: -10px;
+            right: 10px;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            z-index: 1000;
+            margin-left: 20px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 30px 30px;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(-300px);
+        }
+
+        .mobile-links {
+            list-style: none;
+        }
+
+        .mobile-links li {
+            margin: 20px 0;
+        }
+
+        .mobile-links a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--dark);
+            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-links a:hover {
+            color: var(--primary);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1.5rem;
+            color: var(--dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 800;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            transform: rotate(-10);
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Featured Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        .badge-discount {
+            background-color: rgb(12, 154, 9);
+            color: white;
+        }
+
+        .badge-out-of-stock {
+            background-color: red;
+            color: white;
+        }
+
+        .badge-new {
+            background-color: rgb(255, 0, 119);
+            color: white;
+        }
+
+        .product-image {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #f8fafc;
+        }
+
+        .product-image img {
+            max-height: 180px;
+            max-width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .original-price {
+            margin-left: 10px;
+            font-size: 1rem;
+            color: var(--gray);
+            text-decoration: line-through;
+        }
+
+        .product-rating {
+            color: #f59e0b;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Categories Section */
+        .categories {
+            background: white;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            background: var(--primary);
+            color: white;
+        }
+
+        .category-card:hover .category-icon {
+            color: white;
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .category-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(to bottom, #f1f5f9 50%, white 50%);
+        }
+
+        .features-container {
+            display: flex;
+            gap: 50px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .features-image {
+            flex: 1;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .features-image img {
+            max-width: 100%;
+            padding: 50px;
+        }
+
+        .features-content {
+            flex: 1;
+            padding: 50px;
+        }
+
+        .features-list {
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            margin-bottom: 25px;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .feature-text h3 {
+            margin-bottom: 5px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--light);
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin: 20px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 5rem;
+            color: rgba(37, 99, 235, 0.1);
+            font-family: serif;
+        }
+
+        .testimonial-content {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            background: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: #f59e0b;
+            margin-left: auto;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+        }
+
+        .contact-info {
+            padding: 20px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Product Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            margin: 50px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            animation: modalOpen 0.5s ease;
+        }
+        
+        @keyframes modalOpen {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.8);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .modal-image {
+            flex: 1;
+            min-width: 300px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .modal-image img {
+            max-width: 100%;
+            max-height: 400px;
+        }
+        
+        .modal-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+        }
+        
+        .modal-info h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .modal-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .modal-description {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .specs-list {
+            margin-bottom: 30px;
+        }
+        
+        .specs-list li {
+            margin-bottom: 10px;
+            display: flex;
+        }
+        
+        .specs-list li span:first-child {
+            font-weight: 600;
+            width: 120px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .features-container {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .modal-body {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Show hamburger menu on mobile */
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-icons a:not(:last-child) {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .mobile-links a {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Hamburger Menu -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    Mobile Solutions
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="#Galary">Galary</a></li>
+                    <li><a href="index.html#SecendHandProducts">Second Hand</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+                    <!-- Hamburger Menu Button -->
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+        
+        <!-- Mobile Menu (Right Side) -->
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="mobile-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="Products.html"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="#Galary"><i class="fas fa-list"></i>Galary</a></li>
+                <li><a href="index.html#SecendHandProducts"><i class="fas fa-sync-alt"></i> Second Hand</a></li>
+                <li><a href="About.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="Contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Premium Smartphones at Unbeatable Prices</h1>
+                    <p>Discover the latest mobile technology with exclusive deals and discounts. Free shipping on all orders over ₹4999</p>
+                    <a href="Products.html" class="btn">Shop Now</a>
+                    <a href="#SecendHandProducts" class="btn btn-outline">Second Hand Deals</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://i.ibb.co/zHZhP0Gm/header-phone-banner.png" alt="Premium Smartphone">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+    <!------------------------------- Discount Badgh Start ---------------------------------->
+                    <span style="background-color: rgb(0, 255, 136); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    <i class="fas fa-tags"></i> Spacial Offer 20% off  
+                    </span>
+    <!--------------------------------- Discount Badgh End ----------------------------------->
+                    <div class="product-image">
+                        <img src="images/iPhone 14 Pro Max.jpg" alt="iPhone 14 Pro">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Apple</div>
+                        <h3 class="product-name">iPhone 14 Pro Max</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹19,999</span>
+                            <span class="original-price">₹35,000</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(128)</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-details view-details" data-id="1">View Details</a>
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+    <!------------------------------- Discount Badgh Start ---------------------------------->
+                    <span style="background-color: rgb(217, 0, 255); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    <i class="fas fa-tags"></i> New 
+                    </span>
+    <!--------------------------------- Discount Badgh End ----------------------------------->
+                    <div class="product-image">
+                        <img src="images/Galaxy S23 Ultra.jpg" alt="Samsung Galaxy S23">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Samsung</div>
+                        <h3 class="product-name">Galaxy S23 Ultra</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹24,999</span>
+                            <span class="original-price">₹49,999</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(96)</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-details view-details" data-id="2">View Details</a>
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+    <!------------------------------- Discount Badgh Start ---------------------------------->
+                    <span style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    <i class="fas fa-tags"></i> OUT OF STOCK  
+                    </span>
+    <!--------------------------------- Discount Badgh End ----------------------------------->
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1662947991480-1f23b8daf6e2?auto=format&fit=crop&w=400" alt="Google Pixel 7">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Google</div>
+                        <h3 class="product-name">Pixel 7 Pro</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹34,999</span>
+                            <span class="original-price">₹59,999</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(87)</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-details view-details" data-id="3">View Details</a>
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+    <!------------------------------- Discount Badgh Start ---------------------------------->
+                    <span style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    <i class="fas fa-tags"></i> OUT OF STOCK  
+                    </span>
+    <!--------------------------------- Discount Badgh End ----------------------------------->
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1662947991480-1f23b8daf6e2?auto=format&fit=crop&w=400" alt="OnePlus 11">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">OnePlus</div>
+                        <h3 class="product-name">OnePlus 11 5G</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹18,295</span>
+                            <span class="original-price">₹40,000</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(76)</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-details view-details" data-id="4">View Details</a>
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!------------------------------ Second Hand Products Start ---------------------------->
+    <section id="SecendHandProducts" class="section">
+        <div class="container">
+            <h2 class="section-title">Second Hand Products</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+    <!------------------------------- Discount Badgh Start ---------------------------------->
+                    <span style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    <i class="fas fa-tags"></i> OUT OF STOCK  
+                    </span>
+    <!--------------------------------- Discount Badgh End ----------------------------------->
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=400" alt="iPhone 14 Pro">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Apple</div>
+                        <h3 class="product-name">iPhone 14 Pro Max</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹29,999</span>
+                            <span class="original-price">₹45,999</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(128)</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-details view-details" data-id="1">View Details</a>
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+    <!------------------------------- Discount Badgh Start ---------------------------------->
+                    <span style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    <i class="fas fa-tags"></i> OUT OF STOCK  
+                    </span>
+    <!--------------------------------- Discount Badgh End ----------------------------------->
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?auto=format&fit=crop&w=400" alt="Samsung Galaxy S23">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Samsung</div>
+                        <h3 class="product-name">Galaxy S23 Ultra</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹49,999</span>
+                            <span class="original-price">₹80,000</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(96)</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-details view-details" data-id="2">View Details</a>
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+    <!------------------------------- Discount Badgh Start ---------------------------------->
+                    <span style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    <i class="fas fa-tags"></i> OUT OF STOCK  
+                    </span>
+    <!--------------------------------- Discount Badgh End ----------------------------------->
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1662947991480-1f23b8daf6e2?auto=format&fit=crop&w=400" alt="Google Pixel 7">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Google</div>
+                        <h3 class="product-name">Pixel 7 Pro</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹49,000</span>
+                            <span class="original-price">₹86,000</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(87)</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-details view-details" data-id="3">View Details</a>
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+    <!------------------------------- Discount Badgh Start ---------------------------------->
+                    <span style="background-color: red; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 16px;">
+                    <i class="fas fa-tags"></i> OUT OF STOCK  
+                    </span>
+    <!--------------------------------- Discount Badgh End ----------------------------------->
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1662947991480-1f23b8daf6e2?auto=format&fit=crop&w=400" alt="OnePlus 11">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">OnePlus</div>
+                        <h3 class="product-name">OnePlus 11 5G</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹39,000</span>
+                            <span class="original-price">₹79,000</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(76)</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-details view-details" data-id="4">View Details</a>
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!------------------------------ Second Hand Products End ------------------------------->
+
+    <!----------------------------------- Galary Start -------------------------------------->
+    <section id="Galary" class="section"></section>
+            <h2 class="section-title">Galary</h2>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: -10;
+      padding: -10;
+      font-family: Arial, sans-serif;
+    }
+
+    .slider-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 50px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .slider {
+      display: flex;
+      width: 100%;
+      animation: slide 20s infinite;
+    }
+
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      20%  { transform: translateX(0); }
+      25%  { transform: translateX(-100%); }
+      45%  { transform: translateX(-100%); }
+      50%  { transform: translateX(-200%); }
+      70%  { transform: translateX(-200%); }
+      75%  { transform: translateX(-300%); }
+      95%  { transform: translateX(-300%); }
+      100% { transform: translateX(-400%); }
+    }
+  </style>
+
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slide"><img src="images/banner.png" alt="Photo 1"></div>
+      <div class="slide"><img src="images/banner.png" alt="Photo 2"></div>
+      <div class="slide"><img src="images/banner.png" alt="Photo 3"></div>
+      <div class="slide"><img src="images/banner.png" alt="Photo 4"></div>
+      <div class="slide"><img src="images/banner.png" alt="Photo 5"></div>
+    </div>
+  </div>
+</body>
+</html>
+
+<!------------------------------------- Galary End ---------------------------------------->
+
+    
+    <!-- Categories Section -->
+    <section class="section categories">
+        <div class="container">
+            <h2 class="section-title">Browse Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="category-name">Smartphones</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tablet-alt"></i>
+                    </div>
+                    <div class="category-name">Tablets</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div class="category-name">Accessories</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="category-name">Smart Watches</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="category-name">Power Banks</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-sim-card"></i>
+                    </div>
+                    <div class="category-name">SIM Cards</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us Section -->
+    <section class="section features">
+        <div class="container">
+            <h2 class="section-title"> Our Services</h2>
+            <div class="features-container">
+                <div class="features-image">
+                    <img src="images/our services.jpg" alt="Repair Setup">
+                </div>
+                <div class="features-content">
+                    <h2>Best Mobile Shopping Experience</h2>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Free Shipping</h3>
+                                <p>Free delivery for all orders over ₹2999</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-undo"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Easy Returns</h3>
+                                <p>30-day hassle-free returns policy</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>2-Year Warranty</h3>
+                                <p>Extended warranty on all devices</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>24/7 Support</h3>
+                                <p>Dedicated customer support team</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="About.html" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--------------------------------- Customer Reviews Start ----------------------------->
+   <!-- Customer Review Section Start -->
+            <h2 class="section-title">Customer Reviews</h2>
+      </div>
+<section style="padding: 20px; background: #f8f8f8; border-radius: 10px; border: 1px solid #ddd; max-width: 600px; margin: auto;">
+  
+
+  <!-- Star Rating -->
+  <div style="text-align: center; font-size: 22px; color: orange; margin-bottom: 10px;">
+    ★★★★★
+  </div>
+
+  <!-- Customer Info -->
+  <div style="text-align: center; margin-bottom: 10px;">
+    <img src="images/arif goldar.png" alt="Customer Image" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid orange; object-fit: cover; margin-bottom: 8px;">
+    <div><strong style="font-size: 16px;">Arif Goldar</strong></div>
+    <small style="color: gray;">Verified Buyer</small>
+  </div>
+
+  <!-- Review Text -->
+  <p style="font-size: 15px; line-height: 1.6; color: #444; text-align: center; padding: 0 10px;">
+    "Excellent product! Received on time, very good quality and packaging was impressive. Highly recommended!"
+  </p>
+</section>
+<!-- Customer Review Section End -->
+
+
+    <!----------------------------------- Contact Us Start -------------------------------->
+    
+    <!-- Contact Section -->
+    <section class="section contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Have questions about our products or services? Our team is ready to help you with any inquiries.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Our Location</h4>
+                                <p>Lauhati Bazar, Kolkata, Pincode 700135</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Phone Number</h4>
+                                <a href="tel:+916290017076">+91 6290 017 076</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email Address</h4>
+                                <a href="mailto:sayimansari116@gmail.com">sayimansari116@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="MobileSolutions@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="How can we help you?">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Mobile Solutions</h3>
+                    <p>Your one-stop destination for the latest smartphones and accessories at competitive prices with exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Products.html">Products</a></li>
+                        <li><a href="Categories.html">Categories</a></li>
+                        <li><a href="Deals.html">Deals</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Tablets</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Smart Watches</a></li>
+                        <li><a href="#">Power Banks</a></li>
+                        <li><a href="#">SIM Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+             <div class="footer-bottom"></div>
+            <footer style="text-align: center; padding: 10px; font-size: 14px; background-color: #f2f2f200; color: #ffffff;">
+  © 2019 Mobile Solutions. All Rights Reserved.<br>
+  Designed with ❤️ by <a href="https://arif-developers.netlify.app/" target="_blank" style="color: #007BFF; text-decoration: none;">Arif Developers</a>
+</footer>
+
+        </div>
+    </footer>
+    
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalProductImg" src="" alt="Product Image">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalProductName"></h2>
+                    <div class="modal-price" id="modalProductPrice"></div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(128)</span>
+                    </div>
+                    <p class="modal-description" id="modalProductDesc"></p>
+                    <ul class="specs-list">
+                        <li><span>Display:</span> <span id="modalDisplay"></span></li>
+                        <li><span>Processor:</span> <span id="modalProcessor"></span></li>
+                        <li><span>RAM:</span> <span id="modalRAM"></span></li>
+                        <li><span>Storage:</span> <span id="modalStorage"></span></li>
+                        <li><span>Camera:</span> <span id="modalCamera"></span></li>
+                        <li><span>Battery:</span> <span id="modalBattery"></span></li>
+                    </ul>
+                    <div class="modal-actions">
+                        <a href="#" class="btn">Add to cart</a>
+                        <a href="#" class="btn btn-outline">Buy On WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Functionality
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenuFunc() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        hamburger.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuFunc);
+        
+        // Close menu when clicking on overlay
+        menuOverlay.addEventListener('click', closeMenuFunc);
+        
+        // Close menu when clicking on any link
+        const mobileLinks = document.querySelectorAll('.mobile-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenuFunc);
+        });
+        
+        // Close menu when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMenuFunc();
+            }
+        });
+
+        // Product data for modal details
+        const products = {
+            1: {
+                name: "iPhone 14 Pro Max",
+                price: "₹19,999",
+                image: "images/iPhone 14 Pro Max.jpg",
+                description: "The iPhone 14 Pro Max is Apple's most advanced smartphone with a stunning Super Retina XDR display, powerful A16 Bionic chip, and an innovative Dynamic Island.",
+                specs: {
+                    display: "6.7-inch Super Retina XDR display",
+                    processor: "A16 Bionic chip",
+                    ram: "6GB",
+                    storage: "128GB/256GB/512GB/1TB",
+                    camera: "48MP Main + 12MP Ultra Wide + 12MP Telephoto",
+                    battery: "Up to 29 hours video playback"
+                }
+            },
+            2: {
+                name: "Samsung Galaxy S23 Ultra",
+                price: "₹24,999",
+                image: "images/Galaxy S23 Ultra.jpg",
+                description: "The Galaxy S23 Ultra is Samsung's flagship with a massive 6.8-inch Dynamic AMOLED display, Snapdragon 8 Gen 2 chipset, and revolutionary 200MP camera system.",
+                specs: {
+                    display: "6.8-inch Dynamic AMOLED 2X",
+                    processor: "Snapdragon 8 Gen 2",
+                    ram: "12GB",
+                    storage: "256GB/512GB/1TB",
+                    camera: "200MP Wide + 12MP Ultra Wide + 10MP Telephoto x2",
+                    battery: "5000mAh, up to 22 hours video playback"
+                }
+            },
+            3: {
+                name: "Google Pixel 7 Pro",
+                price: "₹34,999",
+                image: "https://images.unsplash.com/photo-1662947991480-1f23b8daf6e2?auto=format&fit=crop&w=600",
+                description: "Pixel 7 Pro features Google's custom Tensor G2 chip, a professional-grade camera system, and the most advanced Pixel features yet.",
+                specs: {
+                    display: "6.7-inch QHD+ OLED",
+                    processor: "Google Tensor G2",
+                    ram: "12GB",
+                    storage: "128GB/256GB",
+                    camera: "50MP Main + 12MP Ultra Wide + 48MP Telephoto",
+                    battery: "5000mAh, up to 24 hours battery life"
+                }
+            },
+            4: {
+                name: "OnePlus 11 5G",
+                price: "₹18,295",
+                image: "https://images.unsplash.com/photo-1662947991480-1f23b8daf6e2?auto=format&fit=crop&w=600",
+                description: "The OnePlus 11 5G delivers flagship performance with Snapdragon 8 Gen 2, Hasselblad camera system, and 100W fast charging.",
+                specs: {
+                    display: "6.7-inch 2K AMOLED",
+                    processor: "Snapdragon 8 Gen 2",
+                    ram: "8GB/16GB",
+                    storage: "128GB/256GB",
+                    camera: "50MP Main + 48MP Ultra Wide + 32MP Telephoto",
+                    battery: "5000mAh with 100W SUPERVOOC charging"
+                }
+            }
+        };
+
+        // View Details functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('productModal');
+            const viewDetailsBtns = document.querySelectorAll('.view-details');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // Open modal on View Details click
+            viewDetailsBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = this.getAttribute('data-id');
+                    const product = products[productId];
+                    
+                    // Populate modal with product data
+                    document.getElementById('modalProductImg').src = product.image;
+                    document.getElementById('modalProductName').textContent = product.name;
+                    document.getElementById('modalProductPrice').textContent = product.price;
+                    document.getElementById('modalProductDesc').textContent = product.description;
+                    document.getElementById('modalDisplay').textContent = product.specs.display;
+                    document.getElementById('modalProcessor').textContent = product.specs.processor;
+                    document.getElementById('modalRAM').textContent = product.specs.ram;
+                    document.getElementById('modalStorage').textContent = product.specs.storage;
+                    document.getElementById('modalCamera').textContent = product.specs.camera;
+                    document.getElementById('modalBattery').textContent = product.specs.battery;
+                    
+                    // Show modal
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+            
+            // Close modal when clicking outside content
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Simple cart count functionality
+            const addToCartButtons = document.querySelectorAll('.modal-actions .btn:first-child');
+            const cartCount = document.querySelector('.cart-count');
+            let count = 3;
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    count++;
+                    cartCount.textContent = count;
+                    
+                    // Animation effect
+                    this.textContent = 'Added!';
+                    setTimeout(() => {
+                        this.textContent = 'Add to Cart';
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+    
+    <script 
+      type="text/javascript"
+      src="https://d3mkw6s8thqya7.cloudfront.net/integration-plugin.js"
+      id="aisensy-wa-widget"
+      widget-id="aaa3ze"
+    >
+    </script>
+	
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Order - Mobile Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reuse existing styles from index.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #f97316;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Order Page Specific Styles */
+        .order-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .order-summary {
+            flex: 1;
+            min-width: 300px;
+            border-right: 1px solid #eee;
+            padding-right: 30px;
+        }
+
+        .order-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-card-order {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-image-order {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .product-image-order img {
+            max-width: 100%;
+            max-height: 100px;
+        }
+
+        .product-info-order {
+            flex: 1;
+        }
+
+        .price-summary {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method.active {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .order-container {
+                flex-direction: column;
+            }
+            .order-summary {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+                padding-right: 0;
+                padding-bottom: 30px;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (Reuse from index.html) -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    Mobile Solutions
+                </a>
+                <!-- ... rest of header ... -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Order Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Complete Your Order</h2>
+            <div class="order-container">
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="orderProduct" class="product-card-order">
+                        <!-- Product will be inserted here by JavaScript -->
+                    </div>
+                    
+                    <div class="price-summary">
+                        <div class="price-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">₹0</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Shipping:</span>
+                            <span>₹99</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Tax (12%):</span>
+                            <span id="tax">₹0</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Total:</span>
+                            <span id="total">₹0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-details">
+                    <h3>Shipping Information</h3>
+                    <form id="orderForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Shipping Address</label>
+                            <textarea id="address" class="form-control" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            <div class="payment-methods">
+                                <div class="payment-method active" data-method="cod">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <div>Cash on Delivery</div>
+                                </div>
+                                <div class="payment-method" data-method="card">
+                                    <i class="fas fa-credit-card"></i>
+                                    <div>Credit Card</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="cardDetails" style="display: none;">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="form-group" style="display: flex; gap: 15px;">
+                                <div style="flex: 1;">
+                                    <label for="expiry">Expiry Date</label>
+                                    <input type="text" id="expiry" class="form-control" placeholder="MM/YY">
+                                </div>
+                                <div style="flex: 1;">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" class="form-control" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                            Place Order
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer (Reuse from index.html) -->
+    <footer>
+        <!-- ... existing footer ... -->
+    </footer>
+    
+    <script>
+        // Get product from sessionStorage
+        const product = JSON.parse(sessionStorage.getItem('selectedProduct'));
+        
+        if (!product) {
+            // Redirect back if no product selected
+            window.location.href = 'index.html';
+        }
+        
+        // Display product information
+        const orderProduct = document.getElementById('orderProduct');
+        orderProduct.innerHTML = `
+            <div class="product-image-order">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="product-info-order">
+                <h4>${product.name}</h4>
+                <div class="product-price">
+                    <span class="current-price">${product.price}</span>
+                </div>
+            </div>
+        `;
+        
+        // Calculate prices
+        const price = parseFloat(product.price.replace('₹', '').replace(',', ''));
+        const subtotal = price;
+        const tax = subtotal * 0.12;
+        const shipping = 99;
+        const total = subtotal + tax + shipping;
+        
+        document.getElementById('subtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+        document.getElementById('tax').textContent = `₹${tax.toLocaleString('en-IN', {maximumFractionDigits: 2})}`;
+        document.getElementById('total').textContent = `₹${total.toLocaleString('en-IN', {maximumFractionDigits: 2})}`;
+        
+        // Payment method toggle
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const cardDetails = document.getElementById('cardDetails');
+        
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                method.classList.add('active');
+                
+                if (method.dataset.method === 'card') {
+                    cardDetails.style.display = 'block';
+                } else {
+                    cardDetails.style.display = 'none';
+                }
+            });
+        });
+        
+        // Form submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                paymentMethod: document.querySelector('.payment-method.active').dataset.method,
+                product: product.name,
+                price: product.price,
+                total: total
+            };
+            
+            // In a real application, you would send this to a server
+            console.log('Order submitted:', formData);
+            
+            // Show success message
+            alert('Order placed successfully! Thank you for your purchase.');
+            
+            // Redirect to home page
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
