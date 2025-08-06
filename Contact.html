@@ -931,12 +931,32 @@
                     </form>
                 </div>
             </div>
-             <div class="footer-bottom"></div>
-           <footer style="text-align: center; padding: 15px; font-size: 14px; background-color: #f2f2f200; color: #ffffff;">
-  © 2019 Mobile Solutions. All Rights Reserved.<br>
-  Designed with ❤️ by <a href="https://arif-developers.netlify.app/" target="_blank" style="color: #007BFF; text-decoration: none;">Arif Developers</a>
+             <!-- Font Awesome link (head এ লাগবে) -->
+              <div class="footer-bottom"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Footer -->
+<footer style="text-align: center; padding: 10px; font-size: 14px; color: #ffffff;">
+  © 2023 Mobile Solutions | Designed with <i class="fas fa-heart updown-heart"></i> by 
+  <a href="https://arif-developers.netlify.app/" target="_blank" style="color: #00ffff; text-decoration: none;">Arif Developers</a>
 </footer>
 
+<!-- Up-Down Heart Animation CSS -->
+<style>
+  .updown-heart {
+    color: red;
+    animation: upDown 1s infinite ease-in-out;
+  }
+
+  @keyframes upDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+</style>
 
     <script>
         // Mobile menu functionality

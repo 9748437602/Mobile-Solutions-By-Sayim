@@ -283,7 +283,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(230, 20, 20, 0.5);
             z-index: 998;
             display: none;
         }
@@ -310,7 +310,7 @@
             width: 600px;
             height: 600px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 0, 0, 0.05);
         }
 
         .about-hero h1 {
@@ -481,7 +481,7 @@
             width: 35px;
             height: 35px;
             border-radius: 50%;
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(255, 0, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -538,7 +538,7 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: white;
+            background-color: rgb(218, 218, 218);
             border: 4px solid var(--primary);
             top: 15px;
             border-radius: 50%;
@@ -558,7 +558,7 @@
             background-color: white;
             position: relative;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.429);
         }
 
         .timeline-content h3 {
@@ -917,7 +917,7 @@
                         <div class="member-position">Founder & CEO</div>
                         <p>With over 10 years of experience in mobile technology, Saiym  leads our vision and growth strategy.</p>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/sayim.ansari.58760"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         </div>
@@ -929,12 +929,14 @@
                     </div>
                     <div class="member-info">
                         <h3>Arif Goldar</h3>
-                        <div class="member-position">Website Developers</div>
+                        <div class="member-position">Web Developers</div>
                         <p>Hello! I’m a passionate developer with 2 years of hands-on experience in web development and design.</p>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.facebook.com/rearpe.services"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://wa.me/919748437602"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.youtube.com/@RearPe.Services"><i class="fab fa-youtube"></i></a>
+                            <a href="https://arif-developers.netlify.app"><i class="fab fa-chrome"></i></a>
+                           
                         </div>
                     </div>
                 </div>
@@ -1011,11 +1013,32 @@
                     </form>
                 </div>
             </div>
-             <div class="footer-bottom"></div>
-            <footer style="text-align: center; padding: 15px; font-size: 14px; background-color: #ffffff00; color: #ffffff;">
-  © 2019 Ms Mobile Solutions. All Rights Reserved.<br>
-  Designed with ❤️ by <a href="https://arif-developers.netlify.app/" target="_blank" style="color: #007BFF; text-decoration: none;">Arif Developers</a>
+             <!-- Font Awesome link (head এ লাগবে) -->
+              <div class="footer-bottom"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Footer -->
+<footer style="text-align: center; padding: 10px; font-size: 14px; color: #ffffff;">
+  © 2023 Mobile Solutions | Designed with <i class="fas fa-heart updown-heart"></i> by 
+  <a href="https://arif-developers.netlify.app/" target="_blank" style="color: #00ffff; text-decoration: none;">Arif Developers</a>
 </footer>
+
+<!-- Up-Down Heart Animation CSS -->
+<style>
+  .updown-heart {
+    color: red;
+    animation: upDown 1s infinite ease-in-out;
+  }
+
+  @keyframes upDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+</style>
 
     <script>
         // Mobile menu functionality
